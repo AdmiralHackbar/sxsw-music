@@ -20,11 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = os.environ['DJANGO_SECRET']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if "DEBUG" in os.environ:
+    print "Debug mode is enabled"
+
+DEBUG = "DEBUG" in os.environ
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".dangg.net"] if not "DEBUG" in os.environ else []
 
 
 # Application definition
@@ -90,6 +93,10 @@ STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
+)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
 )
 
 
