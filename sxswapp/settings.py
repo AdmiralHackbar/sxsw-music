@@ -27,7 +27,7 @@ DEBUG = "DEBUG" in os.environ
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ["http://sxsw.dangg.net", ".sxsw.dangg.net."] if not "DEBUG" in os.environ else []
+ALLOWED_HOSTS = ["*"] if not "DEBUG" in os.environ else []
 
 
 # Application definition
@@ -97,7 +97,10 @@ TEMPLATE_DIRS = (
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+    STATIC_ROOT
 )
+
+STATIC_ROOT = "/var/www/sxsw/static/"
 
 
 # Haystack / Whoosh
