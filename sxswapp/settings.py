@@ -95,12 +95,12 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
 
+STATIC_ROOT = "/var/www/sxsw/static/"
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     STATIC_ROOT
 )
-
-STATIC_ROOT = "/var/www/sxsw/static/"
 
 
 # Haystack / Whoosh
