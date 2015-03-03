@@ -27,7 +27,7 @@ DEBUG = "DEBUG" in os.environ
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = [".dangg.net"] if not "DEBUG" in os.environ else []
+ALLOWED_HOSTS = ["*"] if not "DEBUG" in os.environ else []
 
 
 # Application definition
