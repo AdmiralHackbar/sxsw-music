@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
-
+    <div id="content" class="container"></div>
+    <script type="text/javascript">
+        window.results = [];
+    </script>
+    <script src="{% static 'js/index_bundle.js' %}"></script>
 {% endblock %}
