@@ -19,6 +19,11 @@ menuItems = [
         type: MenuItem.Types.LINK,
         payload: '/artists',
         text: "Artists"
+    },
+    {
+        type: MenuItem.Types.LINK,
+        payload: '/venues',
+        text: "Venues"
     }
 ];
 
