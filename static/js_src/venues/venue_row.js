@@ -1,6 +1,6 @@
 var React = require('react');
-
-
+var mui = require('material-ui');
+var Paper = mui.Paper;
 
 var VenueRow = React.createClass({
     propTypes: {
@@ -8,10 +8,12 @@ var VenueRow = React.createClass({
     },
     render: function() {
         return (
-            <div>
+            <a href={"/venue/" + this.props.venue.name}>
+            <Paper innerClassName="venue-paper">
                 <h3>{this.props.venue.name}</h3>
                 <span>{this.props.venue.address}</span>
-            </div>
+            </Paper>
+            </a>
         )
     }
 });

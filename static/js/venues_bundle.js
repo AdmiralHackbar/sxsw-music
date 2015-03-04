@@ -26054,8 +26054,8 @@ module.exports = require('./lib/React');
 })();
 },{"./venues/venues_content.js":237,"material-ui":1,"react":234,"react-tap-event-plugin":72}],236:[function(require,module,exports){
 var React = require('react');
-
-
+var mui = require('material-ui');
+var Paper = mui.Paper;
 
 var VenueRow = React.createClass({displayName: "VenueRow",
     propTypes: {
@@ -26063,9 +26063,11 @@ var VenueRow = React.createClass({displayName: "VenueRow",
     },
     render: function() {
         return (
-            React.createElement("div", null, 
+            React.createElement("a", {href: "/venue/" + this.props.venue.name}, 
+            React.createElement(Paper, {innerClassName: "venue-paper"}, 
                 React.createElement("h3", null, this.props.venue.name), 
                 React.createElement("span", null, this.props.venue.address)
+            )
             )
         )
     }
@@ -26073,7 +26075,7 @@ var VenueRow = React.createClass({displayName: "VenueRow",
 
 module.exports = VenueRow;
 
-},{"react":234}],237:[function(require,module,exports){
+},{"material-ui":1,"react":234}],237:[function(require,module,exports){
 var React = require('react'),
     mui = require('material-ui');
     VenueRow = require('./venue_row.js');
