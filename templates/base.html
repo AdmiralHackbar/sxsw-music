@@ -5,14 +5,15 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Dangg.net - SXSW {% block title %}{% endblock %}</title>
-
-    <script src="{% static "js/react.min.js" %}"></script>
-    <script src="{% static "js/JSXTransformer.js" %}"></script>
+    <link href="{% static 'css/material-ui.css' %}" rel="stylesheet">
 
 </head>
 <body>
+    <div id="nav"></div>
     {% block content %}
 
     {% endblock %}
 </body>
+
+<script src="{% static "js/base_bundle.js" %}"></script>
 </html>

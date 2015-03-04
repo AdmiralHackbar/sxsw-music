@@ -1,0 +1,27 @@
+{
+  "name": "sxswapp",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jsx": "~0.9.89",
+    "material-ui": "~0.7.0",
+    "react": "~0.12.2",
+    "react-tap-event-plugin": "~0.1.4",
+    "react-tools": "~0.12.2",
+    "reactify": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AdmiralHackbar/sxsw-music.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/AdmiralHackbar/sxsw-music/issues"
+  }
+}
