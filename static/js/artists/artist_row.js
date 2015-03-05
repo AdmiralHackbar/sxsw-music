@@ -9,9 +9,11 @@ var ArtistRow = React.createClass({displayName: "ArtistRow",
     },
     render: function() {
         return (
-            React.createElement(Paper, {innerClassName: "venue-paper"}, 
-                React.createElement("h3", null, this.props.name), 
-                React.createElement("span", null, this.props.genre)
+            React.createElement("a", {href: "/artist/" + this.props.name}, 
+                React.createElement(Paper, {innerClassName: "result"}, 
+                    React.createElement("h3", null, this.props.name), 
+                    React.createElement("span", null, this.props.genre)
+                )
             )
         )
     }

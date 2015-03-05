@@ -9,10 +9,12 @@ var ArtistRow = React.createClass({
     },
     render: function() {
         return (
-            <Paper innerClassName="venue-paper">
-                <h3>{this.props.name}</h3>
-                <span>{this.props.genre}</span>
-            </Paper>
+            <a href={"/artist/" + this.props.name}>
+                <Paper innerClassName="result">
+                    <h3>{this.props.name}</h3>
+                    <span>{this.props.genre}</span>
+                </Paper>
+            </a>
         )
     }
 });
