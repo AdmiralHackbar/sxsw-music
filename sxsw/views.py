@@ -81,8 +81,8 @@ def artist_view(request, artist_name):
         if event.venue:
             print 'has_venue'
             e['venue'] = event.venue.name
-            e['start'] = str(event.start_time) if event.start_time else ""
-            e['end'] = str(event.end_time) if event.end_time else ""
+            e['start'] = event.start_time.strftime('%A, %B %d %I:%M%p') if event.start_time else ""
+            e['end'] = event.end_time.strftime('%A, %B %d %I:%M%p') if event.end_time else ""
             event_data.append(e)
     print event_data
     data['events'] = event_data
