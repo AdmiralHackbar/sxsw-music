@@ -26064,8 +26064,7 @@ var IndexContent = React.createClass({displayName: "IndexContent",
         React.createElement("div", null, 
             React.createElement("form", {action: "/artists"}, 
                 React.createElement(TextField, {hintText: "artist name", name: "artistName"})
-            ), 
-            "// TODO: Moar conent"
+            )
         )
         )
     }

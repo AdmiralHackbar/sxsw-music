@@ -26046,59 +26046,63 @@ module.exports = require('./lib/React');
 (function () {
     React = require('react'),
     mui = require('material-ui');
-    ArtistsContent = require('./artists/artists_content.js')
+    ArtistViewContent = require('./artist_view/artist_view_content.js')
     var injectTapEventPlugin = require("react-tap-event-plugin");
     injectTapEventPlugin();
 
-    React.render(React.createElement(ArtistsContent, null), document.getElementById('content'));
+    React.render(React.createElement(ArtistViewContent, null), document.getElementById('content'));
 })();
-},{"./artists/artists_content.js":237,"material-ui":1,"react":234,"react-tap-event-plugin":72}],236:[function(require,module,exports){
+},{"./artist_view/artist_view_content.js":236,"material-ui":1,"react":234,"react-tap-event-plugin":72}],236:[function(require,module,exports){
+var React = require('react'),
+    mui = require('material-ui');
+    Paper = mui.Paper;
+    EventRow = require('./event_row.js');
+
+var rows = [];
+for(var i = 0; i < window.events.length; i++) {
+    e = window.events[i];
+    rows.push(React.createElement(EventRow, {venue: e.venue, start: e.start, end: e.end}));
+}
+
+var ArtistViewContent = React.createClass({displayName: "ArtistViewContent",
+    render: function(){
+        return (
+        React.createElement("div", null, 
+            React.createElement(Paper, {innerClassName: "artist-header-paper"}, 
+                React.createElement("h2", null, window.artist.name), 
+                React.createElement("h4", null, window.artist.genre)
+            ), 
+            React.createElement("br", null), 
+            rows
+        )
+        )
+    }
+});
+
+module.exports = ArtistViewContent;
+},{"./event_row.js":237,"material-ui":1,"react":234}],237:[function(require,module,exports){
 var React = require('react');
 var mui = require('material-ui');
 var Paper = mui.Paper;
 
-var ArtistRow = React.createClass({displayName: "ArtistRow",
+var EventRow = React.createClass({displayName: "EventRow",
     propTypes: {
-        name: React.PropTypes.string,
-        genre: React.PropTypes.string
+        venue: React.PropTypes.string,
+        start: React.PropTypes.string,
+        end: React.PropTypes.string
     },
     render: function() {
         return (
                 React.createElement(Paper, {innerClassName: "result"}, 
-                    React.createElement("a", {href: "/artist/" + this.props.name}, React.createElement("h3", null, this.props.name)), 
-                    React.createElement("span", null, this.props.genre)
+                    React.createElement("h4", null, this.props.venue), 
+                    React.createElement("span", null, this.props.start, " - ", this.props.end)
                 )
         )
     }
 });
 
-module.exports = ArtistRow;
-},{"material-ui":1,"react":234}],237:[function(require,module,exports){
-var React = require('react'),
-    mui = require('material-ui');
-    ArtistRow = require('./artist_row.js');
-    TextField = mui.TextField;
-
-var rows = [];
-for (var i = 0; i < window.artists.length; i++) {
-    a = window.artists[i];
-    rows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
-}
-var ArtistsContent = React.createClass({displayName: "ArtistsContent",
-    render: function(){
-        return (
-            React.createElement("div", null, 
-                React.createElement("form", {action: "/artists"}, 
-                    React.createElement(TextField, {hintText: "artist name", name: "artistName"})
-                ), 
-            rows
-            )
-        )
-    }
-});
-
-module.exports = ArtistsContent;
-},{"./artist_row.js":236,"material-ui":1,"react":234}],238:[function(require,module,exports){
+module.exports = EventRow;
+},{"material-ui":1,"react":234}],238:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};

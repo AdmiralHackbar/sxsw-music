@@ -10,7 +10,6 @@ var IndexContent = React.createClass({
             <form action="/artists">
                 <TextField hintText="artist name" name="artistName" />
             </form>
-            // TODO: Moar conent
         </div>
         )
     }

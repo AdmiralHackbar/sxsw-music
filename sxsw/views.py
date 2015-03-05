@@ -1,14 +1,11 @@
 from django.shortcuts import render
-from scraper import parse_all_events
-from models import Venue, Artist
+from django.http import HttpResponseNotFound
+from models import Venue, Artist, Event
 from haystack.inputs import Exact, Clean
 from haystack.query import SearchQuerySet
 # Create your views here.
 
 artist_index = SearchQuerySet().models(Artist)
-
-def scrape(request):
-    parse_all_events()
 
 
 def __common_data(request, data):
@@ -27,6 +24,10 @@ def venues(request):
 
 
 def __generate_artist_data(artists):
+
+    events = Event.objects.filter(artist=artists)
+    print str(len(events)) + " events"
+
     data = map(lambda a:
                 {'name': a.name,
                  'genre': a.genre
@@ -41,10 +42,49 @@ def artists(request):
         artistName = request.GET['artistName']
         data['artistName'] = artistName
 
-
-        results = artist_index.filter(content=artistName)
+        if 'genre' in request.GET:
+            results = artist_index.filter(genre=request.GET['genre'], content=Clean(artistName))
+        else:
+            results = artist_index.filter(content=Clean(artistName))
         if len(results) > 0:
             artists = map(lambda a: a.object, results)
             data['artists'] = __generate_artist_data(artists)
-
+    else:
+        artists = Artist.objects.order_by('name').all()
+        data['artists'] = __generate_artist_data(artists)
     return render(request, 'artists.html', data)
+
+
+def artist_view(request, artist_name):
+    artist =  Artist.objects.filter(name=artist_name)
+    if len(artist) == 0:
+        return HttpResponseNotFound('Artist "%s" not found.' % (artist_name,))
+
+
+    data = __common_data(request, {})
+
+    ## Artist data
+    artist = artist[0]
+    artist_data = {
+        'name': artist.name,
+        'genre': artist.genre
+    }
+    if artist.url and artist.url.startswith('http'):
+        artist_data['url'] = artist.url
+    data['artist'] = artist_data
+
+    ## Events
+    events = Event.objects.filter(artist=artist)
+    event_data = []
+    for event in events:
+        e = {}
+        if event.venue:
+            print 'has_venue'
+            e['venue'] = event.venue.name
+            e['start'] = str(event.start_time) if event.start_time else ""
+            e['end'] = str(event.end_time) if event.end_time else ""
+            event_data.append(e)
+    print event_data
+    data['events'] = event_data
+    return render(request, 'artist_view.html', data)
+

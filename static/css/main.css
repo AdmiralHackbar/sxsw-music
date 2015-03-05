@@ -6,6 +6,10 @@
   margin-bottom: 1.0em;
   padding: 0.5em;
 }
+/*** Artist View ***/
+.artist-header-paper {
+  padding: 0.5em;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
