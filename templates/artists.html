@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load jsonify %}
+{% block content %}
+    <div id="content"></div>
+    <script type="text/javascript">
+
+        {% if artists  %}
+            window.artists = {{ artists|jsonify }}
+        {% else %}
+            window.artists = []
+        {% endif %}
+
+    </script>
+    <script src="{% static 'js/artists_bundle.js' %}"></script>
+
+{% endblock %}

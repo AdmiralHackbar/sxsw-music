@@ -11,5 +11,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^venues$', 'sxsw.views.venues', name='venues'),
+    url(r'^artists$', 'sxsw.views.artists', name='artists'),
     url(r'^$', 'sxsw.views.index', name='index')
 )
