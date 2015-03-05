@@ -26065,6 +26065,11 @@ var React = require('react'),
     IconButton = mui.IconButton;
 
 menuItems = [
+  {
+     type: MenuItem.Types.LINK,
+     payload: '/',
+     text: 'Home'
+  },
   { type: MenuItem.Types.SUBHEADER, text: 'Account' },
     // TODO: Set generate this in Django template based on whether or not the user is logged in.
   {

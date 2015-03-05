@@ -26,6 +26,13 @@ def venues(request):
     return render(request, 'venues.html', data)
 
 
+def __generate_artist_data(artists):
+    data = map(lambda a:
+                {'name': a.name,
+                 'genre': a.genre
+                },artists)
+    return data
+
 def artists(request):
 
     data = __common_data(request, {})
@@ -37,10 +44,7 @@ def artists(request):
 
         results = artist_index.filter(content=artistName)
         if len(results) > 0:
-            artists = map(lambda a:
-                            {'name': a.object.name,
-                             'genre': a.object.genre
-                            },results)
-            data['artists'] = artists
+            artists = map(lambda a: a.object, results)
+            data['artists'] = __generate_artist_data(artists)
 
     return render(request, 'artists.html', data)
