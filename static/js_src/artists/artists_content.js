@@ -2,6 +2,7 @@ var React = require('react'),
     mui = require('material-ui');
     ArtistRow = require('./artist_row.js');
     TextField = mui.TextField;
+    Nav = require('../nav.js');
 
 var rows = [];
 for (var i = 0; i < window.artists.length; i++) {
@@ -12,10 +13,13 @@ var ArtistsContent = React.createClass({
     render: function(){
         return (
             <div>
-                <form action="/artists">
-                    <TextField hintText="artist name" name="artistName" />
-                </form>
-            {rows}
+                <Nav/>
+                <div className="content">
+                    <form action="/artists">
+                        <TextField hintText="artist name" name="artistName" />
+                    </form>
+                    {rows}
+                </div>
             </div>
         )
     }

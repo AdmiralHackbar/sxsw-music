@@ -1,6 +1,7 @@
 var React = require('react'),
     mui = require('material-ui');
     VenueRow = require('./venue_row.js');
+    Nav = require('../nav.js');
 
 
 var rows = [];
@@ -11,7 +12,10 @@ var VenuesContent = React.createClass({displayName: "VenuesContent",
     render: function(){
         return (
             React.createElement("div", null, 
-            rows
+                React.createElement(Nav, null), 
+                React.createElement("div", {className: "content"}, 
+                    rows
+                )
             )
         )
     }
