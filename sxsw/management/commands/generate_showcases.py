@@ -15,9 +15,6 @@ class Command(BaseCommand):
         return date(year=start_time.year, month=start_time.month, day=day)
     def handle(self, *args, **options):
 
-        # Delete all existing showcases
-        Showcase.objects.all().delete()
-
         # TODO: Learn how to do actual group bys
         venues = Venue.objects.all()
 
@@ -31,8 +28,12 @@ class Command(BaseCommand):
                 days[date_key] = l
             for d in days:
                 showcase_date = datetime.strptime(d, "%Y-%m-%d")
-                showcase = Showcase(venue=v, date=showcase_date)
-                showcase.save()
+                showcases = Showcase.objects.filter(venue=v, date=showcase_date)
+                if len(showcases) > 0:
+                    showcase = showcases[0]
+                else:
+                    showcase = Showcase(venue=v, date=showcase_date)
+                    showcase.save()
 
                 for e in days[d]:
                     e.showcase = showcase
