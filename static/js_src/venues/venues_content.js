@@ -4,17 +4,27 @@ var React = require('react'),
     Nav = require('../nav.js');
 
 
-var rows = [];
-for (var i = 0; i < window.venues.length; i++) {
-    rows.push(<VenueRow venue={window.venues[i]}/>)
-}
 var VenuesContent = React.createClass({
+    mixins: [Router.State],
+      getInitialState: function() {
+        return {
+          rows: []
+        };
+      },
+      componentDidMount: function() {
+        $.get("/api/venues", function(result) {
+            var rows = [];
+            for (var i = 0; i < result.venues.length; i++) {
+                rows.push(<VenueRow venue={result.venues[i]}/>)
+            }
+            this.setState({rows: rows});
+        }.bind(this));
+      },
     render: function(){
         return (
-            <div>
-                <Nav/>
+            <div className="mui-app-content-canvas page-with-nav">
                 <div className="content">
-                    {rows}
+                    {this.state.rows}
                 </div>
             </div>
         )

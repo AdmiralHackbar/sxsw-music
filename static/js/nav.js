@@ -5,6 +5,8 @@ var React = require('react'),
     RaisedButton = mui.RaisedButton;
     AppBar = mui.AppBar;
     IconButton = mui.IconButton;
+    Router = require('react-router');
+    Link = Router.Link;
 
 menuItems = [
   {
@@ -12,13 +14,13 @@ menuItems = [
      payload: '/',
      text: 'Home'
   },
-  { type: MenuItem.Types.SUBHEADER, text: 'Account' },
-    // TODO: Set generate this in Django template based on whether or not the user is logged in.
-  {
-     type: MenuItem.Types.LINK,
-     payload: '/login',
-     text: 'Login'
-  },
+  //{ type: MenuItem.Types.SUBHEADER, text: 'Account' },
+  //  // TODO: Set generate this in Django template based on whether or not the user is logged in.
+  //{
+  //   type: MenuItem.Types.LINK,
+  //   payload: '#login',
+  //   text: 'Login'
+  //},
     { type: MenuItem.Types.SUBHEADER, text: 'Music' },
     {
         type: MenuItem.Types.LINK,
@@ -40,6 +42,7 @@ var menuButton = (
 );
 
 var Nav = React.createClass({displayName: "Nav",
+    mixins: [Router.State],
 
    render: function(){
        return (

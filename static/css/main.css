@@ -6,6 +6,9 @@
   margin-bottom: 1.0em;
   padding: 0.5em;
 }
+.nav-bar {
+  display: block;
+}
 /*** Artist View ***/
 .artist-header-paper {
   padding: 0.5em;

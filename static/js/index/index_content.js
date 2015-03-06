@@ -5,10 +5,10 @@ var React = require('react'),
     Nav = require('../nav.js');
 
 var IndexContent = React.createClass({displayName: "IndexContent",
+    mixins: [Router.State],
     render: function(){
         return (
-        React.createElement("div", null, 
-            React.createElement(Nav, null), 
+        React.createElement("div", {className: "mui-app-content-canvas page-with-nav"}, 
             React.createElement("div", {className: "content"}, 
                 React.createElement("form", {action: "/artists"}, 
                     React.createElement(TextField, {hintText: "artist name", name: "artistName"})

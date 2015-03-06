@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, HttpResponse
 from models import Venue, Artist, Event
 from haystack.inputs import Exact, Clean
 from haystack.query import SearchQuerySet
+import json
 # Create your views here.
 
 artist_index = SearchQuerySet().models(Artist)
@@ -20,8 +21,8 @@ def venues(request):
     venue_set = Venue.objects.order_by('name').all()
     data = __common_data(request, {})
     data['venues'] = map(lambda v : {'name': v.name, 'address': v.address}, venue_set)
-    return render(request, 'venues.html', data)
-
+    # return render(request, 'venues.html', data)
+    return HttpResponse(json.dumps(data), content_type='application/json')
 
 def __generate_artist_data(artists):
 
@@ -52,7 +53,7 @@ def artists(request):
     else:
         artists = Artist.objects.order_by('name').all()
         data['artists'] = __generate_artist_data(artists)
-    return render(request, 'artists.html', data)
+    return HttpResponse(json.dumps(data), 'application/json')
 
 
 def artist_view(request, artist_name):
@@ -86,5 +87,5 @@ def artist_view(request, artist_name):
             event_data.append(e)
     print event_data
     data['events'] = event_data
-    return render(request, 'artist_view.html', data)
+    return HttpResponse(json.dumps(data), 'application/json')
 
