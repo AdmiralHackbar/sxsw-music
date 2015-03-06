@@ -28842,7 +28842,7 @@ var routes = (
     )
 )
 
-Router.run(routes, Router.HistoryLocation, function (Handler) {
+Router.run(routes, function (Handler) {
   React.render(React.createElement(Handler, null), document.getElementById('content'));
 });
 },{"./artist_view/artist_view_content.js":276,"./artists/artists_content.js":279,"./index/index_content.js":280,"./master.js":281,"./venues/venues_content.js":284,"react":274,"react-router":96,"react-tap-event-plugin":112}],276:[function(require,module,exports){
@@ -28924,7 +28924,7 @@ var ArtistRow = React.createClass({displayName: "ArtistRow",
     render: function() {
         return (
                 React.createElement(Paper, {innerClassName: "result"}, 
-                    React.createElement("a", {href: "/artist/" + this.props.name}, React.createElement("h3", null, this.props.name)), 
+                    React.createElement("a", {href: "/#/artist/" + this.props.name}, React.createElement("h3", null, this.props.name)), 
                     React.createElement("span", null, this.props.genre)
                 )
         )
@@ -28961,7 +28961,7 @@ var ArtistsContent = React.createClass({displayName: "ArtistsContent",
         return (
             React.createElement("div", {className: "mui-app-content-canvas page-with-nav"}, 
                 React.createElement("div", {className: "content"}, 
-                    React.createElement("form", {action: "/artists"}, 
+                    React.createElement("form", {action: "/#/artists"}, 
                         React.createElement(TextField, {hintText: "artist name", name: "artistName"})
                     ), 
                     this.state.rows
@@ -28985,7 +28985,7 @@ var IndexContent = React.createClass({displayName: "IndexContent",
         return (
         React.createElement("div", {className: "mui-app-content-canvas page-with-nav"}, 
             React.createElement("div", {className: "content"}, 
-                React.createElement("form", {action: "/artists"}, 
+                React.createElement("form", {action: "/#/artists"}, 
                     React.createElement(TextField, {hintText: "artist name", name: "artistName"})
                 )
             )
@@ -29055,12 +29055,12 @@ menuItems = [
     { type: MenuItem.Types.SUBHEADER, text: 'Music' },
     {
         type: MenuItem.Types.LINK,
-        payload: '/artists',
+        payload: '/#/artists',
         text: "Artists"
     },
     {
         type: MenuItem.Types.LINK,
-        payload: '/venues',
+        payload: '/#/venues',
         text: "Venues"
     }
 ];

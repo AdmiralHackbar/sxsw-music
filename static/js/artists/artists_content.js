@@ -26,7 +26,7 @@ var ArtistsContent = React.createClass({displayName: "ArtistsContent",
         return (
             React.createElement("div", {className: "mui-app-content-canvas page-with-nav"}, 
                 React.createElement("div", {className: "content"}, 
-                    React.createElement("form", {action: "/artists"}, 
+                    React.createElement("form", {action: "/#/artists"}, 
                         React.createElement(TextField, {hintText: "artist name", name: "artistName"})
                     ), 
                     this.state.rows

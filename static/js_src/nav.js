@@ -24,12 +24,12 @@ menuItems = [
     { type: MenuItem.Types.SUBHEADER, text: 'Music' },
     {
         type: MenuItem.Types.LINK,
-        payload: '/artists',
+        payload: '/#/artists',
         text: "Artists"
     },
     {
         type: MenuItem.Types.LINK,
-        payload: '/venues',
+        payload: '/#/venues',
         text: "Venues"
     }
 ];
