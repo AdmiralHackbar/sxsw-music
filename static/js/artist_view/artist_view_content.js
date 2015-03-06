@@ -15,7 +15,6 @@ var ArtistViewContent = React.createClass({displayName: "ArtistViewContent",
         };
       },
       componentDidMount: function(data) {
-        alert(JSON.stringify(this.getParams()))
         $.get("/api/artist/" + this.getParams().splat, function(result) {
             var rows = [];
             for (var i = 0; i < result.events.length; i++) {
