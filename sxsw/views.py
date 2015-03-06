@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound, HttpResponse
-from models import Venue, Artist, Event
+from models import Venue, Artist, Event, Showcase
 from haystack.inputs import Exact, Clean
 from haystack.query import SearchQuerySet
 import json
@@ -26,13 +26,11 @@ def venues(request):
 
 def __generate_artist_data(artists):
 
-    events = Event.objects.filter(artist=artists)
-    print str(len(events)) + " events"
 
     data = map(lambda a:
                 {'name': a.name,
                  'genre': a.genre
-                },artists)
+                }, artists)
     return data
 
 def artists(request):
@@ -88,4 +86,41 @@ def artist_view(request, artist_name):
     print event_data
     data['events'] = event_data
     return HttpResponse(json.dumps(data), 'application/json')
+
+
+def __get_showcase_data(showcase):
+    events = Event.objects.filter(showcase=showcase).order_by('start_time')
+    event_data = []
+    print len(events)
+    for event in events:
+        event_data.append( {
+        'artist': event.artist.name,
+        'genre': event.artist.genre,
+        'start': event.start_time.strftime('%I:%M%p') if event.start_time else ""
+        })
+    return {
+        'date': showcase.date.strftime("%A, %B %d"),
+        'events': event_data
+    }
+
+def venue(request, venue_name):
+    v = Venue.objects.filter(name=venue_name)
+    if len(v) == 0:
+        return HttpResponseNotFound
+    v = v[0]
+
+    data = __common_data(request, {})
+    data['venue'] = {'name': v.name, 'address': v.address}
+
+    showcases = Showcase.objects.filter(venue=v).order_by('date')
+    events = Event.objects.filter(venue=v)
+    print len(showcases)
+    print len(events)
+    showcase_data = []
+    for s in showcases:
+        showcase_data.append(__get_showcase_data(s))
+
+    data['showcases'] = showcase_data
+    return HttpResponse(json.dumps(data), 'application/json')
+
 

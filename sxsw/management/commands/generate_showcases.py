@@ -26,10 +26,9 @@ class Command(BaseCommand):
             events = Event.objects.filter(venue=v).exclude(start_time__isnull=True).order_by('start_time')
             for e in events:
                 date_key = str(self.__get_date(e.start_time))
-                l = days[date_key] if date_key in events else []
+                l = days[date_key] if date_key in days else []
                 l.append(e)
                 days[date_key] = l
-
             for d in days:
                 showcase_date = datetime.strptime(d, "%Y-%m-%d")
                 showcase = Showcase(venue=v, date=showcase_date)
