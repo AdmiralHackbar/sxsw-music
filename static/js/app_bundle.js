@@ -28939,11 +28939,17 @@ var React = require('react'),
     ArtistRow = require('./artist_row.js');
     TextField = mui.TextField;
 
+var artistRows = [];
+for (var i = 0; i < window.artists.length; i++) {
+  a = window.artists[i]
+  artistRows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
+}
+
 var ArtistsContent = React.createClass({displayName: "ArtistsContent",
     mixins: [Router.State],
       getInitialState: function() {
         return {
-          rows: [],
+          rows: artistRows,
             artistName: ""
         };
       },
@@ -28958,12 +28964,7 @@ var ArtistsContent = React.createClass({displayName: "ArtistsContent",
                   this.setState({rows: rows, artistName: result.artistName});
               }.bind(this));
           } else {
-              var rows = [];
-              for (var i = 0; i < window.artists.length; i++) {
-                  a = window.artists[i]
-                  rows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
-              }
-              this.setState({rows: rows});
+              this.setState({rows: artistRows});
           }
       },
     render: function(){
