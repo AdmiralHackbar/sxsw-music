@@ -10,9 +10,7 @@ var IndexContent = React.createClass({
         return (
         <div className="mui-app-content-canvas page-with-nav">
             <div className="content">
-                <form action="/#/artists">
-                    <TextField hintText="artist name" name="artistName" />
-                </form>
+                Todo: Content goes here
             </div>
         </div>
         )
