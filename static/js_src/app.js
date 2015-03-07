@@ -11,6 +11,7 @@ ArtistViewContent = require('./artist_view/artist_view_content.js');
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
+window.React = React;
 
 var routes = (
     <Route name="root" path="/" handler={Master}>

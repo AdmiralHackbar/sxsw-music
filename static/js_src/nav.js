@@ -23,13 +23,11 @@ menuItems = [
   //},
     { type: MenuItem.Types.SUBHEADER, text: 'Music' },
     {
-        type: MenuItem.Types.LINK,
-        payload: '/#/artists',
+        route: 'artists',
         text: "Artists"
     },
     {
-        type: MenuItem.Types.LINK,
-        payload: '/#/venues',
+        route: 'venues',
         text: "Venues"
     }
 ];
@@ -42,7 +40,7 @@ var menuButton = (
 );
 
 var Nav = React.createClass({
-    mixins: [Router.State],
+    mixins: [Router.State, Router.Navigation],
 
    render: function(){
        return (
@@ -54,14 +52,17 @@ var Nav = React.createClass({
               zDepth={0}>
             {menuButton}
             </AppBar>
-            <LeftNav ref="leftNav" menuItems={menuItems} docked={false} />,
+            <LeftNav ref="leftNav" menuItems={menuItems} docked={false} onChange={this._onChange} />,
         </div>
 
        );
    },
-
     _toggleLeftNav: function() {
         this.refs.leftNav.toggle();
+    },
+    _onChange: function(e, key, payload){
+        this.refs.leftNav.close();
+        this.transitionTo(payload.route);
     }
 });
 

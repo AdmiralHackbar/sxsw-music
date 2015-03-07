@@ -28832,6 +28832,7 @@ ArtistViewContent = require('./artist_view/artist_view_content.js');
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
+window.React = React;
 
 var routes = (
     React.createElement(Route, {name: "root", path: "/", handler: Master}, 
@@ -29054,13 +29055,11 @@ menuItems = [
   //},
     { type: MenuItem.Types.SUBHEADER, text: 'Music' },
     {
-        type: MenuItem.Types.LINK,
-        payload: '/#/artists',
+        route: 'artists',
         text: "Artists"
     },
     {
-        type: MenuItem.Types.LINK,
-        payload: '/#/venues',
+        route: 'venues',
         text: "Venues"
     }
 ];
@@ -29073,7 +29072,7 @@ var menuButton = (
 );
 
 var Nav = React.createClass({displayName: "Nav",
-    mixins: [Router.State],
+    mixins: [Router.State, Router.Navigation],
 
    render: function(){
        return (
@@ -29085,14 +29084,17 @@ var Nav = React.createClass({displayName: "Nav",
               zDepth: 0}, 
             menuButton
             ), 
-            React.createElement(LeftNav, {ref: "leftNav", menuItems: menuItems, docked: false}), ","
+            React.createElement(LeftNav, {ref: "leftNav", menuItems: menuItems, docked: false, onChange: this._onChange}), ","
         )
 
        );
    },
-
     _toggleLeftNav: function() {
         this.refs.leftNav.toggle();
+    },
+    _onChange: function(e, key, payload){
+        this.refs.leftNav.close();
+        this.transitionTo(payload.route);
     }
 });
 
