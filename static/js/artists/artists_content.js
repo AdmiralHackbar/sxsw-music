@@ -12,15 +12,23 @@ var ArtistsContent = React.createClass({displayName: "ArtistsContent",
         };
       },
       componentDidMount: function() {
-
-        $.get("/api/artists/?" + window.location.search.substring(1), function(result) {
-            var rows = [];
-            for (var i = 0; i < result.artists.length; i++) {
-                a = result.artists[i]
-                rows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
-            }
-            this.setState({rows: rows, artistName: result.artistName});
-        }.bind(this));
+          if (window.location.search.substring(1).length > 0) {
+              $.get("/api/artists/?" + window.location.search.substring(1), function (result) {
+                  var rows = [];
+                  for (var i = 0; i < result.artists.length; i++) {
+                      a = result.artists[i]
+                      rows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
+                  }
+                  this.setState({rows: rows, artistName: result.artistName});
+              }.bind(this));
+          } else {
+              var rows = [];
+              for (var i = 0; i < window.artists.length; i++) {
+                  a = window.artists[i]
+                  rows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
+              }
+              this.setState({rows: rows});
+          }
       },
     render: function(){
         return (

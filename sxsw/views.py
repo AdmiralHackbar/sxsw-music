@@ -8,13 +8,20 @@ import json
 
 artist_index = SearchQuerySet().models(Artist)
 
+def __generate_artist_data(artists):
+
+    data = map(lambda a:
+                {'name': a.name,
+                 'genre': a.genre
+                }, artists)
+    return data
 
 def __common_data(request, data):
     return data
 
 
 def index(request):
-    return render(request, 'index.html', __common_data(request, {}))
+    return render(request, 'index.html', __common_data(request, {'artists': __generate_artist_data(Artist.objects.order_by('name').all())}))
 
 
 def venues(request):
@@ -23,15 +30,6 @@ def venues(request):
     data['venues'] = map(lambda v : {'name': v.name, 'address': v.address}, venue_set)
     # return render(request, 'venues.html', data)
     return HttpResponse(json.dumps(data), content_type='application/json')
-
-def __generate_artist_data(artists):
-
-
-    data = map(lambda a:
-                {'name': a.name,
-                 'genre': a.genre
-                }, artists)
-    return data
 
 def artists(request):
 
