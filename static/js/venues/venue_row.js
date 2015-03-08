@@ -8,7 +8,7 @@ var VenueRow = React.createClass({displayName: "VenueRow",
     },
     render: function() {
         return (
-            React.createElement("a", {href: "/venue/" + this.props.venue.name}, 
+            React.createElement("a", {href: "#/venue/" + this.props.venue.name}, 
             React.createElement(Paper, {innerClassName: "result"}, 
                 React.createElement("h3", null, this.props.venue.name), 
                 React.createElement("span", null, this.props.venue.address)

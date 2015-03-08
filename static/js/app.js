@@ -7,6 +7,7 @@ IndexContent = require('./index/index_content.js');
 VenuesContent = require('./venues/venues_content.js');
 ArtistsContent = require('./artists/artists_content.js');
 ArtistViewContent = require('./artist_view/artist_view_content.js');
+VenueViewContent = require('./venue_view/venue_content.js');
 
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
@@ -17,6 +18,7 @@ var routes = (
     React.createElement(Route, {name: "root", path: "/", handler: Master}, 
         React.createElement(DefaultRoute, {handler: IndexContent}), 
         React.createElement(Route, {name: "venues", handler: VenuesContent}), 
+        React.createElement(Route, {name: "venue", path: "venue/:venueName", handler: VenueViewContent}), 
         React.createElement(Route, {name: "artists", path: "/artists", handler: ArtistsContent}, 
             React.createElement(Route, {name: "artists_search", path: "/artists/:artistName", handler: ArtistsContent})
         ), 

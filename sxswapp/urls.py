@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^api/venues$', 'sxsw.views.venues', name='venues'),
     url(r'^api/artists/$', 'sxsw.views.artists', name='artists'),
     url(r'^api/artist/(?P<artist_name>.*)/$', 'sxsw.views.artist_view', name='artist'),
-    url(r'^venue/(?P<venue_name>.*)/$', 'sxsw.views.venue', name='venue'),
+    url(r'^api/venue/(?P<venue_name>.*)/$', 'sxsw.views.venue', name='venue'),
 
     url(r'^artist/.*/$', 'sxsw.views.index', name='index'),
     url(r'^artists$', 'sxsw.views.index', name='index'),

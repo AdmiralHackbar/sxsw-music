@@ -94,7 +94,7 @@ def __get_showcase_data(showcase):
         event_data.append( {
         'artist': event.artist.name,
         'genre': event.artist.genre,
-        'start': event.start_time.strftime('%I:%M%p') if event.start_time else ""
+        'start': event.start_time.strftime('%I:%M%p') if event.start_time else "",
         })
     return {
         'date': showcase.date.strftime("%A, %B %d"),

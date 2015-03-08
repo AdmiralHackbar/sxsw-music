@@ -8,7 +8,7 @@ var VenueRow = React.createClass({
     },
     render: function() {
         return (
-            <a href={"/venue/" + this.props.venue.name}>
+            <a href={"#/venue/" + this.props.venue.name}>
             <Paper innerClassName="result">
                 <h3>{this.props.venue.name}</h3>
                 <span>{this.props.venue.address}</span>
