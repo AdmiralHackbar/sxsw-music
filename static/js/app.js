@@ -17,8 +17,9 @@ var routes = (
     React.createElement(Route, {name: "root", path: "/", handler: Master}, 
         React.createElement(DefaultRoute, {handler: IndexContent}), 
         React.createElement(Route, {name: "venues", handler: VenuesContent}), 
-        React.createElement(Route, {name: "artists_search", path: "artists/*", handler: ArtistsContent}), 
-        React.createElement(Route, {name: "artists", handler: ArtistsContent}), 
+        React.createElement(Route, {name: "artists", path: "/artists", handler: ArtistsContent}, 
+            React.createElement(Route, {name: "artists_search", path: "/artists/:artistName", handler: ArtistsContent})
+        ), 
         React.createElement(Route, {name: "artist", path: "artist/*", handler: ArtistViewContent})
     )
 )

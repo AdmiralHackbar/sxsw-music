@@ -4,46 +4,40 @@ var React = require('react'),
     Router = require('react-router');
     TextField = mui.TextField;
 
-var artistRows = [];
-for (var i = 0; i < window.artists.length; i++) {
-  a = window.artists[i]
-  artistRows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
-}
-
 var ArtistsContent = React.createClass({displayName: "ArtistsContent",
     mixins: [Router.State, Router.Navigation],
       getInitialState: function() {
         return {
-          rows: artistRows,
-            artistName: ""
+          rows: [],
+            artistName: this.getParams().artistName
         };
       },
-      //componentDidMount: function() {
-      //    if (window.location.search.substring(1).length > 0) {
-      //        $.get("/api/artists/?" + window.location.search.substring(1), function (result) {
-      //            var rows = [];
-      //            for (var i = 0; i < result.artists.length; i++) {
-      //                a = result.artists[i]
-      //                rows.push(<ArtistRow name={a.name} genre={a.genre}/>)
-      //            }
-      //            this.setState({rows: rows, artistName: result.artistName});
-      //        }.bind(this));
-      //    } else {
-      //        this.setState({rows: artistRows});
-      //    }
-      //},
-    handleSubmit: function(){
-      $.get("/api/artists/?artistName=" + $('#artistName').val(), function (result) {
-          var rows = [];
-          for (var i = 0; i < result.artists.length; i++) {
-              a = result.artists[i]
-              rows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
-          }
-          this.setState({rows: rows, artistName: result.artistName});
-      }.bind(this));
-       return false;
+    getResults: function(artistName) {
+      if (artistName != "" && artistName != undefined) {
+          $.get("/api/artists/?artistName=" + artistName, function (result) {
+              var rows = [];
+              for (var i = 0; i < result.artists.length; i++) {
+                  a = result.artists[i]
+                  rows.push(React.createElement(ArtistRow, {name: a.name, genre: a.genre}))
+              }
+              this.setState({rows: rows});
+          }.bind(this));
+      } else {
+          this.setState({rows: []});
+      }
+    },
+      componentDidMount: function() {
+        this.getResults(this.state.artistName);
+      },
+    handleSubmit: function(e){
+        e.preventDefault();
+        this.setState({artistName: $("#artistName").val(), rows: []})
+        this.getResults($("#artistName").val());
+        this.transitionTo("/artists/" + $("#artistName").val())
+
     },
     render: function(){
+
         return (
             React.createElement("div", {className: "mui-app-content-canvas page-with-nav"}, 
                 React.createElement("div", {className: "content"}, 

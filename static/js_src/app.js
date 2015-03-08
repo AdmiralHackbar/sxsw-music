@@ -17,8 +17,9 @@ var routes = (
     <Route name="root" path="/" handler={Master}>
         <DefaultRoute handler={IndexContent} />
         <Route name="venues" handler={VenuesContent} />
-        <Route name="artists_search" path="artists/*" handler={ArtistsContent} />
-        <Route name="artists" handler={ArtistsContent} />
+        <Route name="artists" path="/artists" handler={ArtistsContent} >
+            <Route name="artists_search" path="/artists/:artistName" handler={ArtistsContent} />
+        </Route>
         <Route name="artist" path="artist/*" handler={ArtistViewContent} />
     </Route>
 )
