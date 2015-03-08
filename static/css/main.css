@@ -13,6 +13,9 @@
 .venue-header-paper {
   padding: 0.5em;
 }
+.showcase-date {
+  background-color: #00bcd4;
+}
 /*** Artist View ***/
 .artist-header-paper {
   padding: 0.5em;

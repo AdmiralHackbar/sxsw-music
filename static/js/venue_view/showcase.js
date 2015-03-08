@@ -18,7 +18,7 @@ var Showcase = React.createClass({displayName: "Showcase",
         for (var i = 0; i < this.props.showcase.events.length; i++) {
             e = this.props.showcase.events[i];
             events.push(
-                React.createElement("h4", null, e.start, " - ", e.artist, "(", e.genre, ")")
+                React.createElement("a", {href: "#/artist/" + e.artist}, React.createElement("h4", null, e.start, " - ", e.artist, "(", e.genre, ")"))
             );
         }
         this.setState({events: events});
@@ -26,7 +26,9 @@ var Showcase = React.createClass({displayName: "Showcase",
     render: function() {
         return (
             React.createElement(Paper, {innerClassName: "result"}, 
-                React.createElement("h3", null, this.props.showcase.date), 
+                React.createElement("div", {class: "showcase-date"}, 
+                React.createElement("h3", null, this.props.showcase.date)
+                ), 
                 this.state.events
             )
         )
