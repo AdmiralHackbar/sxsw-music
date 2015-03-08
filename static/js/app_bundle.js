@@ -28907,9 +28907,11 @@ var EventRow = React.createClass({displayName: "EventRow",
     },
     render: function() {
         return (
-                React.createElement(Paper, {innerClassName: "result"}, 
-                    React.createElement("h4", null, this.props.venue), 
-                    React.createElement("span", null, this.props.start, " - ", this.props.end)
+                React.createElement("a", {href: "#/venue/" + this.props.venue}, 
+                    React.createElement(Paper, {innerClassName: "result"}, 
+                        React.createElement("h4", null, this.props.venue), 
+                        React.createElement("span", null, this.props.start, " - ", this.props.end)
+                    )
                 )
         )
     }
@@ -29145,9 +29147,7 @@ var Showcase = React.createClass({displayName: "Showcase",
     render: function() {
         return (
             React.createElement(Paper, {innerClassName: "result"}, 
-                React.createElement("div", {class: "showcase-date"}, 
-                React.createElement("h3", null, this.props.showcase.date)
-                ), 
+                React.createElement("h3", null, this.props.showcase.date), 
                 this.state.events
             )
         )

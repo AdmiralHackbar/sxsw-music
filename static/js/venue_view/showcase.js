@@ -26,9 +26,7 @@ var Showcase = React.createClass({displayName: "Showcase",
     render: function() {
         return (
             React.createElement(Paper, {innerClassName: "result"}, 
-                React.createElement("div", {class: "showcase-date"}, 
-                React.createElement("h3", null, this.props.showcase.date)
-                ), 
+                React.createElement("h3", null, this.props.showcase.date), 
                 this.state.events
             )
         )

@@ -10,9 +10,11 @@ var EventRow = React.createClass({displayName: "EventRow",
     },
     render: function() {
         return (
-                React.createElement(Paper, {innerClassName: "result"}, 
-                    React.createElement("h4", null, this.props.venue), 
-                    React.createElement("span", null, this.props.start, " - ", this.props.end)
+                React.createElement("a", {href: "#/venue/" + this.props.venue}, 
+                    React.createElement(Paper, {innerClassName: "result"}, 
+                        React.createElement("h4", null, this.props.venue), 
+                        React.createElement("span", null, this.props.start, " - ", this.props.end)
+                    )
                 )
         )
     }
