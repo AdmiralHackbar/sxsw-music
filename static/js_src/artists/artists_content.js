@@ -16,9 +16,13 @@ var ArtistsContent = React.createClass({
       if (artistName != "" && artistName != undefined) {
           $.get("/api/artists/?artistName=" + artistName, function (result) {
               var rows = [];
-              for (var i = 0; i < result.artists.length; i++) {
-                  a = result.artists[i]
-                  rows.push(<ArtistRow name={a.name} genre={a.genre}/>)
+              if (result.artists != undefined) {
+                  for (var i = 0; i < result.artists.length; i++) {
+                      a = result.artists[i]
+                      rows.push(<ArtistRow name={a.name} genre={a.genre}/>)
+                  }
+              } else {
+                  rows.push(<h3>No results for '{artistName}' were found.</h3>)
               }
               this.setState({rows: rows});
           }.bind(this));
