@@ -21,7 +21,7 @@ def __common_data(request, data):
 
 
 def index(request):
-    return render(request, 'index.html', __common_data(request, {'artists': __generate_artist_data(Artist.objects.order_by('name').all())}))
+    return render(request, 'index.html', __common_data(request, {}))
 
 
 def venues(request):
