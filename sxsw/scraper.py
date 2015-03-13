@@ -55,7 +55,7 @@ def parse_event_page(id):
 
     # Genre
     details = tree.xpath('//div[@class="details"]/div/div/a')
-    genre = details[0].text
+    genre = details[0].text if len(details) > 0 else None
     url = details[1].attrib['href'] if len(details) >= 2 else None
 
     print "%s (%s)\t %s - %s\t %s (%s) \t%s" % (artist, genre, date, time, location_name, location_address, url)
@@ -137,8 +137,10 @@ def save_event(id, artist_name, date, time, location_name, location_address, gen
 
 
 def parse_all_events():
+    all_ids = []
     for c in __CHARACTERS:
         ids = parse_artist_list(c)
+        all_ids.extend(ids)
         for id in ids:
             try:
                 artist, date, time, location_name, location_address, genre, url = parse_event_page(id)
@@ -147,6 +149,11 @@ def parse_all_events():
             except TypeError:
                 print "failed to load event %s" % (id,)
 
+    events = Event.objects.all()
+    event_ids = map(lambda x: x.id, events)
+
+    deleted_ids = filter(lambda e: e in all_ids, event_ids)
+    print "Deleted %d ids" % (len(deleted_ids), )
 
 if __name__ == "__main__":
     artists = parse_all_events()
