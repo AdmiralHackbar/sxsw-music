@@ -10,7 +10,7 @@ var EventRow = React.createClass({
     },
     render: function() {
         return (
-                <a href={"#/venue/" + this.props.venue}>
+                <a href={"#/venue/" + encodeURIComponent(this.props.venue)}>
                     <Paper innerClassName="result">
                         <h4>{this.props.venue}</h4>
                         <span>{this.props.start} - {this.props.end}</span>

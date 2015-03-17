@@ -18,7 +18,7 @@ var Showcase = React.createClass({
         for (var i = 0; i < this.props.showcase.events.length; i++) {
             e = this.props.showcase.events[i];
             events.push(
-                <a href={"#/artist/" + e.artist}><h4>{e.start} - {e.artist}({e.genre})</h4></a>
+                <a href={"#/artist/" + encodeURIComponent(e.artist)}><h4>{e.start} - {e.artist}({e.genre})</h4></a>
             );
         }
         this.setState({events: events});

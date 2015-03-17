@@ -10,7 +10,7 @@ var ArtistRow = React.createClass({
     render: function() {
         return (
                 <Paper innerClassName="result">
-                    <a href={"/#/artist/" + this.props.name}><h3>{this.props.name}</h3></a>
+                    <a href={"/#/artist/" + encodeURIComponent(this.props.name)}><h3>{this.props.name}</h3></a>
                     <span>{this.props.genre}</span>
                 </Paper>
         )

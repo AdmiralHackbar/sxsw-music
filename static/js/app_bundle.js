@@ -28907,7 +28907,7 @@ var EventRow = React.createClass({displayName: "EventRow",
     },
     render: function() {
         return (
-                React.createElement("a", {href: "#/venue/" + this.props.venue}, 
+                React.createElement("a", {href: "#/venue/" + encodeURIComponent(this.props.venue)}, 
                     React.createElement(Paper, {innerClassName: "result"}, 
                         React.createElement("h4", null, this.props.venue), 
                         React.createElement("span", null, this.props.start, " - ", this.props.end)
@@ -28931,7 +28931,7 @@ var ArtistRow = React.createClass({displayName: "ArtistRow",
     render: function() {
         return (
                 React.createElement(Paper, {innerClassName: "result"}, 
-                    React.createElement("a", {href: "/#/artist/" + this.props.name}, React.createElement("h3", null, this.props.name)), 
+                    React.createElement("a", {href: "/#/artist/" + encodeURIComponent(this.props.name)}, React.createElement("h3", null, this.props.name)), 
                     React.createElement("span", null, this.props.genre)
                 )
         )
@@ -29143,7 +29143,7 @@ var Showcase = React.createClass({displayName: "Showcase",
         for (var i = 0; i < this.props.showcase.events.length; i++) {
             e = this.props.showcase.events[i];
             events.push(
-                React.createElement("a", {href: "#/artist/" + e.artist}, React.createElement("h4", null, e.start, " - ", e.artist, "(", e.genre, ")"))
+                React.createElement("a", {href: "#/artist/" + encodeURIComponent(e.artist)}, React.createElement("h4", null, e.start, " - ", e.artist, "(", e.genre, ")"))
             );
         }
         this.setState({events: events});
@@ -29220,7 +29220,7 @@ var VenueRow = React.createClass({displayName: "VenueRow",
     },
     render: function() {
         return (
-            React.createElement("a", {href: "#/venue/" + this.props.venue.name}, 
+            React.createElement("a", {href: "#/venue/" + encodeURIComponent(this.props.venue.name)}, 
             React.createElement(Paper, {innerClassName: "result"}, 
                 React.createElement("h3", null, this.props.venue.name), 
                 React.createElement("span", null, this.props.venue.address)
