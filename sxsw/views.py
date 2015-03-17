@@ -20,10 +20,6 @@ def __common_data(request, data):
     return data
 
 
-def index(request):
-    return render(request, 'index.html', __common_data(request, {}))
-
-
 def venues(request):
     venue_set = Venue.objects.order_by('name').all()
     data = __common_data(request, {})
@@ -76,12 +72,10 @@ def artist_view(request, artist_name):
     for event in events:
         e = {}
         if event.venue:
-            print 'has_venue'
             e['venue'] = event.venue.name
             e['start'] = event.start_time.strftime('%A, %B %d %I:%M%p') if event.start_time else ""
             e['end'] = event.end_time.strftime('%A, %B %d %I:%M%p') if event.end_time else ""
             event_data.append(e)
-    print event_data
     data['events'] = event_data
     return HttpResponse(json.dumps(data), 'application/json')
 
@@ -89,7 +83,6 @@ def artist_view(request, artist_name):
 def __get_showcase_data(showcase):
     events = Event.objects.filter(showcase=showcase).order_by('start_time')
     event_data = []
-    print len(events)
     for event in events:
         event_data.append( {
         'artist': event.artist.name,
@@ -98,7 +91,8 @@ def __get_showcase_data(showcase):
         })
     return {
         'date': showcase.date.strftime("%A, %B %d"),
-        'events': event_data
+        'events': event_data,
+        'venue': {'name': showcase.venue.name, 'address': showcase.venue.address}
     }
 
 def venue(request, venue_name):
@@ -111,9 +105,6 @@ def venue(request, venue_name):
     data['venue'] = {'name': v.name, 'address': v.address}
 
     showcases = Showcase.objects.filter(venue=v).order_by('date')
-    events = Event.objects.filter(venue=v)
-    print len(showcases)
-    print len(events)
     showcase_data = []
     for s in showcases:
         showcase_data.append(__get_showcase_data(s))
@@ -122,3 +113,17 @@ def venue(request, venue_name):
     return HttpResponse(json.dumps(data), 'application/json')
 
 
+def showcases(request, showcase_date):
+    slist = Showcase.objects.filter(date = showcase_date).order_by('venue')
+    data = __common_data(request, {})
+
+    showcase_data = []
+    for s in slist:
+        showcase_data.append(__get_showcase_data(s))
+    data['showcases'] = showcase_data
+    data['date'] = showcase_date
+    return HttpResponse(json.dumps(data), 'application/json')
+
+
+def index(request):
+    return render(request, 'index.html', __common_data(request, {}))

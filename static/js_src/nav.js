@@ -10,8 +10,7 @@ var React = require('react'),
 
 menuItems = [
   {
-     type: MenuItem.Types.LINK,
-     payload: '/',
+     route: '/',
      text: 'Home'
   },
   //{ type: MenuItem.Types.SUBHEADER, text: 'Account' },

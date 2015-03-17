@@ -8,6 +8,7 @@ VenuesContent = require('./venues/venues_content.js');
 ArtistsContent = require('./artists/artists_content.js');
 ArtistViewContent = require('./artist_view/artist_view_content.js');
 VenueViewContent = require('./venue_view/venue_content.js');
+ShowcasesContent = require('./showcases/showcases_content.js');
 
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
@@ -23,6 +24,7 @@ var routes = (
             <Route name="artists_search" path="/artists/:artistName" handler={ArtistsContent} />
         </Route>
         <Route name="artist" path="artist/*" handler={ArtistViewContent} />
+        <Route name="showcases" path="/showcases/:showcaseDate" handler={ShowcasesContent} />
     </Route>
 )
 
