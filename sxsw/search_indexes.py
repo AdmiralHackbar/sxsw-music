@@ -6,7 +6,7 @@ from models import Artist
 class ArtistIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, model_attr="name")
     artist_name = indexes.CharField(model_attr="name")
-    genre = indexes.CharField(model_attr="genre")
+    genre = indexes.CharField(model_attr="genre", null=True)
 
     def get_model(self):
         return Artist
