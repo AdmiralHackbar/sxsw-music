@@ -3,7 +3,7 @@ var React = require('react'),
     TextField = mui.TextField;
     IconButton = mui.IconButton;
     Paper = mui.Paper;
-    Showcase = require('./showcase.js')
+    ShowcaseRow = require('./showcase.js')
 
 var VenueContent = React.createClass({
     mixins: [Router.State],
@@ -19,7 +19,7 @@ var VenueContent = React.createClass({
         $.get("/api/venue/" + this.getParams().venueName, function(result) {
             var showcases = []
             for (var i = 0; i < result.showcases.length; i++) {
-                showcases.push(<Showcase showcase={result.showcases[i]} />);
+                showcases.push(<ShowcaseRow showcase={result.showcases[i]} />);
             }
             this.setState(
                 {

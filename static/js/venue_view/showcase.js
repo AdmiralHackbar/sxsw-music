@@ -3,7 +3,7 @@ var mui = require('material-ui');
 var Paper = mui.Paper;
 var RaisedButton = mui.RaisedButton;
 
-var Showcase = React.createClass({displayName: "Showcase",
+var ShowcaseRow = React.createClass({displayName: "ShowcaseRow",
     mixins: [Router.State],
     propTypes: {
         showcase: React.PropTypes.object
@@ -33,4 +33,4 @@ var Showcase = React.createClass({displayName: "Showcase",
     }
 });
 
-module.exports = Showcase;
+module.exports = ShowcaseRow;
