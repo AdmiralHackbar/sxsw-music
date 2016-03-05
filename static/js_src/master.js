@@ -1,25 +1,44 @@
 var React = require('react');
-var Router = require('react-router');
-var RouteHandler = Router.RouteHandler;
 var mui = require('material-ui');
-var AppBar = mui.AppBar;
 var AppCanvas = mui.AppCanvas;
-var Menu = mui.Menu;
-var IconButton = mui.IconButton;
-var Nav = require('./nav.js');
+var AppBar = mui.AppBar;
+var LeftNav = mui.LeftNav;
 
 var Master = React.createClass({
 
   mixins: [Router.State],
 
+  getInitialState: function() {
+    return {
+        menuOpen: false
+    };
+  },
+
+    toggleMenu: function() {
+        this.setState({menuOpen: !this.state.menuOpen})
+    },
+
   render: function() {
 
     return (
       <AppCanvas predefinedLayout={1}>
+          <AppBar
+            title="SXSW Music Showcases"
+              onLeftIconButtonTouchTap={this.toggleMenu}
+          />
 
-            <Nav/>,
+          <LeftNav
+              docked={false}
+              width={200}
+              open={this.state.menuOpen}
+              onRequestChange={this.toggleMenu}
+          >
 
-            <RouteHandler />
+          </LeftNav>
+
+          <div className="app-content">
+            {this.props.children}
+          </div>
 
       </AppCanvas>
     );

@@ -97,7 +97,7 @@ def __get_date_time(march_day, time_string):
         march_day +=1
 
     minutes = int(''.join([c for c in time_chunks[1] if c in '1234567890']))
-    time = datetime(year=2015, month=3, day=march_day, hour=hour, minute=minutes)
+    time = datetime(year=2016, month=3, day=march_day, hour=hour, minute=minutes)
     return time
 
 
@@ -140,7 +140,6 @@ def parse_all_events():
     all_ids = []
     for c in __CHARACTERS:
         ids = parse_artist_list(c)
-        print ids
         all_ids.extend(ids)
         for id in ids:
             try:
@@ -151,7 +150,6 @@ def parse_all_events():
                 print "failed to load event %s" % (id,)
 
     events = Event.objects.all()
-    print all_ids
     event_ids = map(lambda x: x.id, events)
 
     print "parsed %d events " % (len(all_ids),)

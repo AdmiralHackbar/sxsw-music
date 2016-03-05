@@ -1,7 +1,6 @@
 var React = require('react'),
     mui = require('material-ui');
     VenueRow = require('./venue_row.js');
-    Nav = require('../nav.js');
 
 
 var VenuesContent = React.createClass({displayName: "VenuesContent",

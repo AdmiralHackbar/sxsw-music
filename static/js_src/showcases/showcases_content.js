@@ -16,7 +16,7 @@ var ShowcasesContent = React.createClass({
     },
 
     componentDidMount: function(data) {
-        $.get("/api/showcases/" + this.getParams().showcaseDate, function(result) {
+        $.get("/api/showcases/" + this.props.params.showcaseDate, function(result) {
             var showcases = []
             for (var i = 0; i < result.showcases.length; i++) {
                 showcases.push(<Showcase showcase={result.showcases[i]} />);

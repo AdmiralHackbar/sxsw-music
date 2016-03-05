@@ -1,6 +1,7 @@
 var React = require('react');
 var mui = require('material-ui');
 var Paper = mui.Paper;
+Link = require('react-router').Link;
 
 var VenueRow = React.createClass({
     propTypes: {
@@ -8,12 +9,12 @@ var VenueRow = React.createClass({
     },
     render: function() {
         return (
-            <a href={"#/venue/" + encodeURIComponent(this.props.venue.name)}>
+            <Link to={"#/venue/" + encodeURIComponent(this.props.venue.name)}>
             <Paper innerClassName="result">
                 <h3>{this.props.venue.name}</h3>
                 <span>{this.props.venue.address}</span>
             </Paper>
-            </a>
+            </Link>
         )
     }
 });

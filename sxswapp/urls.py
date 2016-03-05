@@ -21,5 +21,7 @@ urlpatterns = patterns('',
     url(r'^artist/.*/$', 'sxsw.views.index', name='index'),
     url(r'^artists$', 'sxsw.views.index', name='index'),
     url(r'^venues$', 'sxsw.views.index', name='index'),
+    url(r'^venue/.*/$', 'sxsw.views.index', name='index'),
+    url(r'^showcases/.*/$', 'sxsw.views.index', name='index'),
     url(r'^$', 'sxsw.views.index', name='index')
 )

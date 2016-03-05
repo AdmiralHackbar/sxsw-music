@@ -2,7 +2,6 @@ var React = require('react'),
     mui = require('material-ui');
     Paper = mui.Paper;
     EventRow = require('./event_row.js');
-    Nav = require('../nav.js');
 var emptyArtist = {};
 emptyArtist.name = "";
 emptyArtist.genre = "";
@@ -15,7 +14,7 @@ var ArtistViewContent = React.createClass({displayName: "ArtistViewContent",
         };
       },
       componentDidMount: function(data) {
-        $.get("/api/artist/" + this.getParams().splat, function(result) {
+        $.get("/api/artist/" + this.props.params.splat, function(result) {
             var rows = [];
             for (var i = 0; i < result.events.length; i++) {
                 e = result.events[i];

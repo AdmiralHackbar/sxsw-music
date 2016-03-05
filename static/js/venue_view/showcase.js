@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('material-ui');
 var Paper = mui.Paper;
 var RaisedButton = mui.RaisedButton;
+Link = require('react-router').Link;
 
 var ShowcaseRow = React.createClass({displayName: "ShowcaseRow",
     mixins: [Router.State],
@@ -18,7 +19,7 @@ var ShowcaseRow = React.createClass({displayName: "ShowcaseRow",
         for (var i = 0; i < this.props.showcase.events.length; i++) {
             e = this.props.showcase.events[i];
             events.push(
-                React.createElement("a", {href: "#/artist/" + encodeURIComponent(e.artist)}, React.createElement("h4", null, e.start, " - ", e.artist, "(", e.genre, ")"))
+                React.createElement(Link, {to: "#/artist/" + encodeURIComponent(e.artist)}, React.createElement("h4", null, e.start, " - ", e.artist, "(", e.genre, ")"))
             );
         }
         this.setState({events: events});

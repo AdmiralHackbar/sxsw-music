@@ -16,7 +16,7 @@ var VenueContent = React.createClass({
     },
 
     componentDidMount: function(data) {
-        $.get("/api/venue/" + this.getParams().venueName, function(result) {
+        $.get("/api/venue/" + this.props.params.venueName, function(result) {
             var showcases = []
             for (var i = 0; i < result.showcases.length; i++) {
                 showcases.push(<ShowcaseRow showcase={result.showcases[i]} />);

@@ -1,6 +1,7 @@
 var React = require('react');
 var mui = require('material-ui');
 var Paper = mui.Paper;
+Link = require('react-router').Link;
 
 var ArtistRow = React.createClass({
     propTypes: {
@@ -10,7 +11,7 @@ var ArtistRow = React.createClass({
     render: function() {
         return (
                 <Paper innerClassName="result">
-                    <a href={"/#/artist/" + encodeURIComponent(this.props.name)}><h3>{this.props.name}</h3></a>
+                    <Link to={"/artist/" + encodeURIComponent(this.props.name)}><h3>{this.props.name}</h3></Link>
                     <span>{this.props.genre}</span>
                 </Paper>
         )

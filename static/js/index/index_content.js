@@ -1,8 +1,5 @@
-var React = require('react'),
-    mui = require('material-ui');
-    TextField = mui.TextField;
-    IconButton = mui.IconButton;
-    Nav = require('../nav.js');
+var React = require('react');
+Link = require('react-router').Link;
 
 var IndexContent = React.createClass({displayName: "IndexContent",
     mixins: [Router.State],
@@ -11,12 +8,10 @@ var IndexContent = React.createClass({displayName: "IndexContent",
         React.createElement("div", {className: "mui-app-content-canvas page-with-nav"}, 
             React.createElement("div", {className: "content"}, 
                 React.createElement("h2", null, "Browse showcases"), 
-                React.createElement("a", {href: "/#/showcases/2015-03-17"}, React.createElement("h3", null, "Tuesday")), 
-                React.createElement("a", {href: "/#/showcases/2015-03-18"}, React.createElement("h3", null, "Wednesday")), 
-                React.createElement("a", {href: "/#/showcases/2015-03-19"}, React.createElement("h3", null, "Thursday")), 
-                React.createElement("a", {href: "/#/showcases/2015-03-20"}, React.createElement("h3", null, "Friday")), 
-                React.createElement("a", {href: "/#/showcases/2015-03-21"}, React.createElement("h3", null, "Saturday")), 
-                React.createElement("a", {href: "/#/showcases/2015-03-17"}, React.createElement("h3", null, "Sunday"))
+                React.createElement(Link, {to: "/showcases/2016-03-17"}, React.createElement("h3", null, "Tuesday")), 
+                React.createElement(Link, {to: "/showcases/2015-03-18"}, React.createElement("h3", null, "Wednesday")), 
+                React.createElement(Link, {to: "/showcases/2015-03-17"}, React.createElement("h3", null, "Tuesday")), 
+                React.createElement(Link, {to: "/showcases/2015-03-18"}, React.createElement("h3", null, "Wednesday"))
             )
         )
         )
