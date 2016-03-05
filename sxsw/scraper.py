@@ -11,7 +11,7 @@ import pytz
 __LIST_URL = "http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&event_type=showcase&a=%s"
 url = "http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&event_type=showcase&a=m"
 
-__EVENT_URL = "http://schedule.sxsw.com/2015/events/event_%s"
+__EVENT_URL = "http://schedule.sxsw.com/2016/events/event_%s"
 
 __CHARACTERS = list('1abcdefghijklmnopqrstuvwxyz')
 
@@ -22,7 +22,7 @@ def parse_artist_list(character):
     site_data = data.read()
     tree = html.fromstring(site_data)
 
-    elements = tree.xpath('//div[@class="conf-desc"]/a')
+    elements = tree.xpath('//div[@class="conf-desc item-blocking"]/a')
     ids = map(lambda x: x.attrib['id'].split('_')[1], elements )
     return ids
 
@@ -140,6 +140,7 @@ def parse_all_events():
     all_ids = []
     for c in __CHARACTERS:
         ids = parse_artist_list(c)
+        print ids
         all_ids.extend(ids)
         for id in ids:
             try:
@@ -150,9 +151,12 @@ def parse_all_events():
                 print "failed to load event %s" % (id,)
 
     events = Event.objects.all()
+    print all_ids
     event_ids = map(lambda x: x.id, events)
 
-    deleted_ids = filter(lambda e: e in all_ids, event_ids)
+    print "parsed %d events " % (len(all_ids),)
+    print "have %d events in the db" % (len(event_ids),)
+    deleted_ids = filter(lambda e: e not in all_ids, event_ids)
     print "Deleted %d ids" % (len(deleted_ids), )
 
 if __name__ == "__main__":
