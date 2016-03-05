@@ -19,7 +19,7 @@ var ShowcaseRow = React.createClass({displayName: "ShowcaseRow",
         for (var i = 0; i < this.props.showcase.events.length; i++) {
             e = this.props.showcase.events[i];
             events.push(
-                React.createElement(Link, {to: "#/artist/" + encodeURIComponent(e.artist)}, React.createElement("h4", null, e.start, " - ", e.artist, "(", e.genre, ")"))
+                React.createElement(Link, {to: "/artist/" + encodeURIComponent(e.artist)}, React.createElement("h4", null, e.start, " - ", e.artist, "(", e.genre, ")"))
             );
         }
         this.setState({events: events});
