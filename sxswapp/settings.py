@@ -64,8 +64,12 @@ WSGI_APPLICATION = 'sxswapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR + '/sxsw.db',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sxsw',
+        'USER': os.environ['MYSQL_USER'],
+        'PASSWORD': os.environ['MYSQL_PASS'],
+        'HOST': os.environ['MYSQL_HOST'],
+        'PORT': os.environ['MYSQL_PORT'],
     }
 }
 
