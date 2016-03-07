@@ -2,6 +2,7 @@ var React = require('react');
     mui = require('material-ui');
     ArtistRow = require('./artist_row.js');
     TextField = mui.TextField;
+var browserHistory = require('react-router').browserHistory;
 
 var ArtistsContent = React.createClass({
     mixins: [Router.State],
@@ -36,7 +37,7 @@ var ArtistsContent = React.createClass({
         e.preventDefault();
         this.setState({artistName: $("#artistName").val(), rows: []})
         this.getResults($("#artistName").val());
-        this.transitionTo("/artists/" + $("#artistName").val())
+        browserHisory.push("/artists/" + encodeURIComponent($("#artistName")).val());
 
     },
     render: function(){
@@ -50,18 +51,7 @@ var ArtistsContent = React.createClass({
 
                 </div>
             </div>
-        )
-
-        //return (
-        //    <div className="mui-app-content-canvas page-with-nav">
-        //        <div className="content">
-        //            <form id="artistForm" onSubmit={this.handleSubmit}>
-        //                <TextField hintText="artist name" name="artistName" id="artistName"/>
-        //            </form>
-        //            {this.state.rows}
-        //        </div>
-        //    </div>
-        //)
+        );
     }
 });
 
