@@ -37,7 +37,7 @@ var ArtistsContent = React.createClass({displayName: "ArtistsContent",
         e.preventDefault();
         this.setState({artistName: $("#artistName").val(), rows: []})
         this.getResults($("#artistName").val());
-        browserHistory.push("/artists/" + encodeURIComponent($("#artistName")).val());
+        browserHistory.push("/artists/" + encodeURIComponent($("#artistName").val()));
 
     },
     render: function(){
